@@ -42,9 +42,19 @@ const Home: NextPage<Props> = ({ data, error }: Props) => {
           {data.results.map(({ name }) => (
             <li
               key={name}
-              className={`bg-gradient-to-r ${gradients[name]} p-4 justify-center rounded-md text-indigo-900 h-40 flex items-center uppercase font-bold`}
+              className={`bg-gradient-to-r ${gradients[name]}   rounded-md text-indigo-900 h-40  uppercase font-bold hover:animate-pulse`}
             >
-              <Link href={`/habitat/${name}`}>{name}</Link>
+              <Link href={`/habitat/${name}`} passHref>
+                <span className="cursor-pointer relative w-full h-full justify-center flex items-center">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    className="absolute top-0 left-0  w-full h-full opacity-0"
+                    src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mMMY3hSz0AEYBxVSF+FAAX1EUVgupQIAAAAAElFTkSuQmCC"
+                    alt="habitat placeholder image"
+                  />
+                  <span>{name}</span>
+                </span>
+              </Link>
             </li>
           ))}
         </ul>

@@ -44,6 +44,7 @@ const Habitat: NextPage<Props> = ({ data }: Props) => {
           <meta name="description" content={`pokemon habitat - ${name}`} />
           <link rel="icon" href="/favicon.ico" />
         </Head>
+
         <h1 className="capitalize mb-10 text-center text-6xl font-RobotoCondensed">
           {name}
         </h1>
@@ -56,10 +57,10 @@ const Habitat: NextPage<Props> = ({ data }: Props) => {
           {data.pokemon_species.map(({ name }) => (
             <li
               key={name}
-              className={`p-4 justify-center rounded-md text-indigo-900 h-40 flex items-center flex-col uppercase font-bold bg-indigo-100 border-indigo-200 border-solid border-2`}
+              className={`justify-center rounded-md text-indigo-900 h-40 flex items-center flex-col uppercase font-bold bg-indigo-100 border-indigo-200 border-solid border-2`}
             >
               <Link href={`/pokemon/${name}`} passHref>
-                <span className="flex items-center flex-col cursor-pointer">
+                <span className="flex items-center flex-col cursor-pointer p-4">
                   {name}
                   <Image
                     src={

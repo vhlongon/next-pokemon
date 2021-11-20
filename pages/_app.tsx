@@ -4,6 +4,7 @@ import NextNProgress from 'nextjs-progressbar';
 import { useRouter } from 'next/router';
 import Overlay from '../components/Overlay';
 import LoadingBall from '../components/LoadingBall';
+import NavBar from '../components/NavBar';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -25,6 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         height={3}
         showOnShallow={true}
       />
+      <NavBar />
       <Component {...pageProps} />
     </>
   );

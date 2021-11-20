@@ -12,6 +12,9 @@ module.exports = {
     },
   },
   darkMode: false,
+  variants: {
+    animation: ['hover', 'focus'],
+  },
   theme: {
     extend: {
       colors: {
@@ -47,9 +50,6 @@ module.exports = {
       '3/4': '75%',
       full: '100%',
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [require('tailwindcss-textshadow')],
 };
