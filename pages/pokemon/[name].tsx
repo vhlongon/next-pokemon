@@ -51,7 +51,7 @@ const Pokemon: NextPage<Props> = ({ data }: Props) => {
           <title>{data.name}</title>
           <meta name="description" content={`pokemon - ${data.name}`} />
         </Head>
-        <div className="flex justify-center items-center min-h-full">
+        <div className="flex justify-center items-center min-h-full p-4">
           <div className={classes['flip-card']}>
             <div className={classes['flip-card-inner']}>
               <div className={classes['flip-card-front']}>
@@ -60,7 +60,7 @@ const Pokemon: NextPage<Props> = ({ data }: Props) => {
                 >
                   <div className="absolute z-0 w-full h-full border-8 rounded-sm border-gray-200 pointer-events-none"></div>
                   <div
-                    className={`w-72 min-w-full flex flex-col items-center px-8 pb-8 bg-gradient-to-bl ${gradients}`}
+                    className={`w-60 sm:w-72 min-w-full flex flex-col items-center px-8 pb-8 bg-gradient-to-bl ${gradients}`}
                   >
                     <h1 className="capitalize leading-none text-center text-2xl pb-1 pt-3 px-2 font-RobotoCondensed text-indigo-900 bg-gray-200 rounded-b font-bold">
                       {data.name}
@@ -76,7 +76,7 @@ const Pokemon: NextPage<Props> = ({ data }: Props) => {
                       />
                     </div>
                   </div>
-                  <div className="px-12">
+                  <div className="sm:px-12">
                     <PokemonTypes types={data.types} />
                     <PokemonStats stats={data.stats} />
                     <PokemonHabilities habilities={data.moves} />

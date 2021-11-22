@@ -38,7 +38,7 @@ const Home: NextPage<Props> = ({ data, error }: Props) => {
         <h1 className="mb-10 text-center text-6xl font-RobotoCondensed">
           Habitats
         </h1>
-        <ul className="grid grid-cols-4 gap-4 p-4 max-w-6xl m-auto">
+        <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 p-4 max-w-6xl m-auto">
           {data.results.map(({ name }) => (
             <li
               key={name}

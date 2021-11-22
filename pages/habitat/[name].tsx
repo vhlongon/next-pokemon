@@ -52,7 +52,7 @@ const Habitat: NextPage<Props> = ({ data }: Props) => {
           Pokemons
         </h2>
 
-        <ul className="grid grid-cols-6 gap-4 p-4 max-w-6xl m-auto">
+        <ul className="grid grid-cols-2 gap-4 p-4 max-w-6xl m-auto sm:grid-cols-4 lg:grid-cols-6">
           {data.pokemon_species.map(({ name }) => (
             <li
               key={name}
