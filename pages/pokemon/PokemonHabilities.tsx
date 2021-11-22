@@ -8,7 +8,7 @@ export const PokemonHabilities = ({ habilities }: Props) => {
       <div className="text-center w-20 -mt-4 mb-1 m-auto bg-white">
         Habilities
       </div>
-      <ul className="grid grid-cols-2 gap-x-6 mb-8 mt-4">
+      <ul className="grid grid-cols-2 gap-x-6 mb-8 mt-4 text-left">
         {habilities.map((hability) => (
           <li className="" key={hability}>
             {hability}

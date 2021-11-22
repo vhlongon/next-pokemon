@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
+import Head from 'next/head';
 import { ParsedUrlQuery } from 'querystring';
 import { PokemonResponse, PokemonsResponse, PokemonType } from '../../types';
 import { normalizeName } from '../../utils/normalizeName';
@@ -45,46 +46,52 @@ const Pokemon: NextPage<Props> = ({ data }: Props) => {
     const gradients = getGradients(data.types);
 
     return (
-      <div className="flex justify-center items-center min-h-full">
-        <div className={classes['flip-card']}>
-          <div className={classes['flip-card-inner']}>
-            <div className={classes['flip-card-front']}>
-              <div
-                className={`flex flex-col items-center justify-center rounded-lg border-4 border-indigo-300 relative`}
-              >
-                <div className="absolute z-0 w-full h-full border-8 rounded-sm border-gray-200 pointer-events-none"></div>
+      <>
+        <Head>
+          <title>{data.name}</title>
+          <meta name="description" content={`pokemon - ${data.name}`} />
+        </Head>
+        <div className="flex justify-center items-center min-h-full">
+          <div className={classes['flip-card']}>
+            <div className={classes['flip-card-inner']}>
+              <div className={classes['flip-card-front']}>
                 <div
-                  className={`w-72 min-w-full flex flex-col items-center px-8 pb-8 bg-gradient-to-bl ${gradients}`}
+                  className={`flex flex-col items-center justify-center rounded-lg border-4 border-indigo-300 relative`}
                 >
-                  <h1 className="capitalize leading-none text-center text-2xl pb-1 pt-3 px-2 font-RobotoCondensed text-indigo-900 bg-gray-200 rounded-b font-bold">
-                    {data.name}
-                  </h1>
-                  <div className="mt-2">
-                    <Image
-                      alt={data.name}
-                      src={data.image}
-                      width={150}
-                      height={150}
-                      placeholder="blur"
-                      blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mMMY3hSz0AEYBxVSF+FAAX1EUVgupQIAAAAAElFTkSuQmCC"
-                    />
+                  <div className="absolute z-0 w-full h-full border-8 rounded-sm border-gray-200 pointer-events-none"></div>
+                  <div
+                    className={`w-72 min-w-full flex flex-col items-center px-8 pb-8 bg-gradient-to-bl ${gradients}`}
+                  >
+                    <h1 className="capitalize leading-none text-center text-2xl pb-1 pt-3 px-2 font-RobotoCondensed text-indigo-900 bg-gray-200 rounded-b font-bold">
+                      {data.name}
+                    </h1>
+                    <div className="mt-2">
+                      <Image
+                        alt={data.name}
+                        src={data.image}
+                        width={150}
+                        height={150}
+                        placeholder="blur"
+                        blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mMMY3hSz0AEYBxVSF+FAAX1EUVgupQIAAAAAElFTkSuQmCC"
+                      />
+                    </div>
+                  </div>
+                  <div className="px-12">
+                    <PokemonTypes types={data.types} />
+                    <PokemonStats stats={data.stats} />
+                    <PokemonHabilities habilities={data.moves} />
                   </div>
                 </div>
-                <div className="px-12">
-                  <PokemonTypes types={data.types} />
-                  <PokemonStats stats={data.stats} />
-                  <PokemonHabilities habilities={data.moves} />
-                </div>
               </div>
-            </div>
-            <div className={classes['flip-card-back']}>
-              <div className="w-full h-full flex justify-center items-center bg-gradient-to-tl from-indigo-300 to-indigo-100 rounded-lg border-indigo-300 border-4">
-                <Pokeball animate={false} />
+              <div className={classes['flip-card-back']}>
+                <div className="w-full h-full flex justify-center items-center bg-gradient-to-tl from-indigo-300 to-indigo-100 rounded-lg border-indigo-300 border-4">
+                  <Pokeball animate={false} />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 

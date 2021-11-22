@@ -42,7 +42,6 @@ const Habitat: NextPage<Props> = ({ data }: Props) => {
         <Head>
           <title>{name}</title>
           <meta name="description" content={`pokemon habitat - ${name}`} />
-          <link rel="icon" href="/favicon.ico" />
         </Head>
 
         <h1 className="capitalize mb-10 text-center text-6xl font-RobotoCondensed">
