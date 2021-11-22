@@ -1,13 +1,16 @@
 import React from 'react';
 import styles from './loadingBall.module.css';
 
-const Pokeball = () => {
+interface Props {
+  animate?: boolean;
+}
+const Pokeball = ({ animate = true }: Props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={135}
       height={135}
-      className={styles.spinning}
+      className={animate ? styles.spinning : ''}
     >
       <style>
         {
