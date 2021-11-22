@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { PokemonType } from '../../types';
+import { PokemonType } from '../types';
 import classes from './pokemonType.module.css';
 
 interface Props {

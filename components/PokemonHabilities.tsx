@@ -1,7 +1,7 @@
 interface Props {
   habilities: string[];
 }
-export const PokemonHabilities = ({ habilities }: Props) => {
+const PokemonHabilities = ({ habilities }: Props) => {
   return (
     <div className="w-full text-indigo-900">
       <hr className="mx-4" />
@@ -18,3 +18,5 @@ export const PokemonHabilities = ({ habilities }: Props) => {
     </div>
   );
 };
+
+export default PokemonHabilities;

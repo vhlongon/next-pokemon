@@ -4,9 +4,9 @@ import Head from 'next/head';
 import { ParsedUrlQuery } from 'querystring';
 import { PokemonResponse, PokemonsResponse, PokemonType } from '../../types';
 import { normalizeName } from '../../utils/normalizeName';
-import { PokemonHabilities } from './PokemonHabilities';
-import PokemonStats from './PokemonStats';
-import PokemonTypes from './PokemonTypes';
+import PokemonHabilities from '../../components/PokemonHabilities';
+import PokemonStats from '../../components/PokemonStats';
+import PokemonTypes from '../../components/PokemonTypes';
 import classes from './pokemonCard.module.css';
 import Pokeball from '../../components/LoadingBall';
 
