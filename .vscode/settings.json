@@ -2,5 +2,25 @@
   "editor.quickSuggestions": {
     "strings": true
   },
-  "css.customData": [".vscode/css_custom_data.json"]
+  "css.customData": [".vscode/css_custom_data.json"],
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#52753e",
+    "activityBar.activeBorder": "#2c3a53",
+    "activityBar.background": "#52753e",
+    "activityBar.foreground": "#e7e7e7",
+    "activityBar.inactiveForeground": "#e7e7e799",
+    "activityBarBadge.background": "#2c3a53",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "sash.hoverBorder": "#52753e",
+    "statusBar.background": "#3b542c",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#52753e",
+    "statusBarItem.remoteBackground": "#3b542c",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#3b542c",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#3b542c99",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "peacock.color": "#3b542c"
 }
