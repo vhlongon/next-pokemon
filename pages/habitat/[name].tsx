@@ -4,10 +4,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { ParsedUrlQuery } from 'querystring';
-import { fetchHabitats } from '..';
-import { HabitatResponse } from '../../types';
-import { fetchPokemon } from '../pokemon/[name]';
+import { fetchHabitats } from '../habitats';
 import { normalizeName } from '../../utils/normalizeName';
+import { fetchHabitat, fetchPokemon } from '../../dataFetchers';
+import { transformHabitatData } from '../../utils/transformData';
 
 type PokemonImages = Record<string, string>;
 
@@ -83,13 +83,6 @@ const Habitat: NextPage<Props> = ({ data }: Props) => {
   return <div>no data</div>;
 };
 
-const fetchHabitat = async (name: string): Promise<HabitatResponse> => {
-  const response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon-habitat/${name}`
-  );
-  return await response.json();
-};
-
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const habitats = await fetchHabitats();
@@ -114,7 +107,7 @@ export const getStaticProps: HabitatStaticPropsType = async (context) => {
   try {
     const { pokemon_species } = await fetchHabitat(name);
     const pokemonDataPromises = pokemon_species.map(
-      async ({ name }) => await fetchPokemon(normalizeName(name))
+      async ({ name }) => await fetchPokemon(name)
     );
     const pokemonsData = await Promise.all(pokemonDataPromises);
     const images = pokemonsData.reduce<PokemonImages>(
@@ -124,10 +117,7 @@ export const getStaticProps: HabitatStaticPropsType = async (context) => {
 
     return {
       props: {
-        data: {
-          pokemon_species: pokemon_species.map(({ name }) => ({ name })),
-          pokemonImages: images,
-        },
+        data: transformHabitatData(pokemon_species, images),
       },
     };
   } catch (error) {

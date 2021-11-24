@@ -84,3 +84,19 @@ export interface PokemonsResponse {
   count: number;
   results: PokemonResponse[];
 }
+
+export interface TransformedPokemonData {
+  id: number;
+  image: string;
+  moves: string[];
+  name: string;
+  types: PokemonType[];
+  stats: { value: number; name: string; effort: number }[];
+}
+
+export interface TransformedHabitatData {
+  pokemonImages: PokemonImages;
+  pokemon_species: { name: string }[];
+}
+
+export type PokemonImages = Record<string, string>;

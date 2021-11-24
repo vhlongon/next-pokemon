@@ -3,22 +3,18 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import Head from 'next/head';
 import { ParsedUrlQuery } from 'querystring';
-import { PokemonResponse, PokemonsResponse, PokemonType } from '../../types';
-import { normalizeName } from '../../utils/normalizeName';
+import {
+  PokemonsResponse,
+  PokemonType,
+  TransformedPokemonData,
+} from '../../types';
 import PokemonHabilities from '../../components/PokemonHabilities';
 import PokemonStats from '../../components/PokemonStats';
 import PokemonTypes from '../../components/PokemonTypes';
 import classes from './pokemonCard.module.css';
 import Pokeball from '../../components/LoadingBall';
-
-interface TransformedPokemonData {
-  id: number;
-  image: string;
-  moves: string[];
-  name: string;
-  types: PokemonType[];
-  stats: { value: number; name: string; effort: number }[];
-}
+import { fetchPokemon } from '../../dataFetchers';
+import { transformPokemonData } from '../../utils/transformData';
 
 type HabitatStaticPropsType = GetStaticProps<
   Partial<{
@@ -107,13 +103,6 @@ const Pokemon: NextPage<Props> = ({ data }: Props) => {
   return <div>no data</div>;
 };
 
-export const fetchPokemon = async (name: string): Promise<PokemonResponse> => {
-  const response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${normalizeName(name)}`
-  );
-  return await response.json();
-};
-
 export const fetchPokemons = async (): Promise<PokemonsResponse> => {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=200`);
   return await response.json();
@@ -141,27 +130,11 @@ export const getStaticProps: HabitatStaticPropsType = async (context) => {
     };
   }
   try {
-    const res = await fetchPokemon(pokemonName);
-
-    const { sprites, moves, id, name, stats, types } = res;
-    const data = {
-      image:
-        sprites.other?.['official-artwork']?.front_default ||
-        sprites.front_default,
-      moves: moves.slice(0, 5).map(({ move }) => move.name),
-      id,
-      name,
-      stats: stats.map(({ base_stat, effort, stat }) => ({
-        value: base_stat,
-        effort,
-        name: stat.name,
-      })),
-      types: types.map(({ type }) => type.name),
-    };
+    const response = await fetchPokemon(pokemonName);
 
     return {
       props: {
-        data,
+        data: transformPokemonData(response),
       },
     };
   } catch (error) {
