@@ -9,7 +9,7 @@ const NavBar = () => {
   const isStart = router.pathname === '/';
 
   return (
-    <nav className="flex flex-row-reverse flex-end py-2 px-4 items-center w-full bg-gray-100 border-b-2 border-indigo-100">
+    <nav className="flex flex-row-reverse flex-wrap flex-end py-2 px-4 items-center w-full bg-gray-100 border-b-2 border-indigo-100">
       {!isHabitatsPath && (
         <Link href="/habitats" passHref>
           <span className="cursor-pointer inline-flex ml-4 items-center justify-center bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
@@ -20,7 +20,7 @@ const NavBar = () => {
       {!isStart && (
         <Link href="/" passHref>
           <span className="cursor-pointer inline-flex ml-4 items-center justify-center bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
-            Back to start
+            Start
           </span>
         </Link>
       )}
