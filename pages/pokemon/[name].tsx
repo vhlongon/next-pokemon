@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import Head from 'next/head';
@@ -42,6 +43,7 @@ const getGradients = (types: PokemonType[]) => {
 };
 
 const Pokemon: NextPage<Props> = ({ data }: Props) => {
+  const [flipped, setFlipped] = useState(false);
   if (data) {
     const gradients = getGradients(data.types);
 
@@ -52,8 +54,15 @@ const Pokemon: NextPage<Props> = ({ data }: Props) => {
           <meta name="description" content={`pokemon - ${data.name}`} />
         </Head>
         <div className="flex justify-center items-center min-h-full p-4">
-          <div className={classes['flip-card']}>
-            <div className={classes['flip-card-inner']}>
+          <div
+            className={classes['flip-card']}
+            onClick={() => setFlipped((s) => !s)}
+          >
+            <div
+              className={`${classes['flip-card-inner']} ${
+                flipped ? classes['flipped'] : ''
+              }`}
+            >
               <div className={classes['flip-card-front']}>
                 <div
                   className={`flex flex-col items-center justify-center rounded-lg border-4 border-indigo-300 relative`}
