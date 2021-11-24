@@ -1,3 +1,7 @@
+.container {
+  width: 400px;
+}
+
 .flip-card {
   cursor: pointer;
   background-color: transparent;

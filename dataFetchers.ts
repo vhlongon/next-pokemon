@@ -1,4 +1,4 @@
-import { HabitatResponse } from './types';
+import { HabitatResponse, PokemonsResponse } from './types';
 import { normalizeName } from './utils/normalizeName';
 import { PokemonResponse } from './types';
 
@@ -15,6 +15,13 @@ export const handleFetch = async <T>(url: string): Promise<T> => {
 export const fetchHabitat = async (name: string): Promise<HabitatResponse> => {
   const response = await handleFetch<HabitatResponse>(
     `https://pokeapi.co/api/v2/pokemon-habitat/${name}`
+  );
+  return response;
+};
+
+export const fetchPokemons = async (limit = 200): Promise<PokemonsResponse> => {
+  const response = await handleFetch<PokemonsResponse>(
+    `https://pokeapi.co/api/v2/pokemon/?limit=${limit}`
   );
   return response;
 };

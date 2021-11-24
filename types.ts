@@ -100,3 +100,5 @@ export interface TransformedHabitatData {
 }
 
 export type PokemonImages = Record<string, string>;
+
+export type ErrorWithStatus = Error & { status: number };
