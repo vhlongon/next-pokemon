@@ -14,7 +14,7 @@ const Search = ({ pokemonNames }: Props) => {
   const [matchingPokemon] = pokemonNames.filter((name) =>
     name.includes(debouncedValue)
   );
-  const { pokemon } = usePokemon(matchingPokemon, Boolean(matchingPokemon), {});
+  const { pokemon } = usePokemon(matchingPokemon);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
