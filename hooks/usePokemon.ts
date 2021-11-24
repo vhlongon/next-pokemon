@@ -9,15 +9,16 @@ interface Options extends FullConfiguration {
 }
 export const usePokemon = (name: string, options?: Partial<Options>) => {
   const { shouldFetch = true, ...swrOptions } = options || {};
-  const { data, error } = useSWR<PokemonResponse, ErrorWithStatus>(
-    shouldFetch ? name : null,
-    fetchPokemon,
-    swrOptions
-  );
+
+  const { data, error, isValidating } = useSWR<
+    PokemonResponse,
+    ErrorWithStatus
+  >(() => (shouldFetch ? name : null), fetchPokemon, swrOptions);
 
   return {
     pokemon: data && transformPokemonData(data),
-    isLoading: !error && !data,
+    isLoading: isValidating && !error && !data,
+    isValidating,
     error,
   };
 };

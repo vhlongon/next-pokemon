@@ -30,7 +30,7 @@ const PokemonCard = ({ data }: Props) => {
       >
         <div className={classes['flip-card-front']}>
           <div
-            className={`flex flex-col items-center justify-center rounded-lg border-4 border-indigo-300 relative`}
+            className={`flex flex-col items-center justify-center rounded-lg border-4 border-indigo-300 relative bg-white`}
           >
             <div className="absolute z-0 w-full h-full border-8 rounded-sm border-gray-200 pointer-events-none"></div>
             <div

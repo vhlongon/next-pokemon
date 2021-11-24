@@ -14,7 +14,10 @@ const Search = ({ pokemonNames }: Props) => {
   const [matchingPokemon] = pokemonNames.filter((name) =>
     name.includes(debouncedValue)
   );
-  const { pokemon } = usePokemon(matchingPokemon);
+  const shouldFetch = Boolean(matchingPokemon);
+  const { pokemon, isLoading, isValidating } = usePokemon(matchingPokemon, {
+    shouldFetch,
+  });
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -24,7 +27,7 @@ const Search = ({ pokemonNames }: Props) => {
     <div
       className={`flex flex-col m-auto items-center text-indigo-900 ${classes.container}`}
     >
-      <div className="flex flex-col  flex-1 w-full border-indigo-100 border-2 rounded-md p-4">
+      <div className="flex flex-col  flex-1 w-full border-indigo-100 border-2 rounded-md p-4 relative">
         <label className="mb-2" htmlFor="search">
           Search for pokemon
         </label>
@@ -35,6 +38,9 @@ const Search = ({ pokemonNames }: Props) => {
           value={value}
           onChange={handleChange}
         />
+        {(isLoading || isValidating) && (
+          <div className="absolute right-4">loading...</div>
+        )}
       </div>
 
       {pokemon && value ? (
